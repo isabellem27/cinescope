@@ -1,0 +1,13 @@
+
+knp_paginator:
+    page_range: 5                       # Nombre de pages affichées autour de la page courante
+    default_options:
+        page_name: page                 # Nom du paramètre dans l'URL, exemple: /articles?page=2
+        sort_field_name: sort           # nom du tri dans l'URL, exemple: /articles?sort=title
+        sort_direction_name: direction  # nom direction du tri dans l'URL, exemple: /articles?sort=title&direction=asc
+        distinct: true                  # application de distinct dans le select.
+    template:
+        pagination: '@KnpPaginator/Pagination/sliding.html.twig'  # Template par défaut
+        # Autres templates disponibles:
+        # '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig'
+        # '@KnpPaginator/Pagination/foundation_v6_pagination.html.twig'

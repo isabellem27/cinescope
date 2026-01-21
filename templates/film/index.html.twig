@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des films{% endblock %}
+
+{% block body %}
+    <h1>Liste des films</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Synopsis</th>
+                <th>Année de réalisation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for film in films %}
+            <tr>
+                <td>{{ film.id }}</td>
+                <td>{{ film.title }}</td>
+                <td>{{ film.synopsis }}</td>
+                <td>{{ film.releaseYear }}</td>
+                <td>
+                    <a href="{{ path('app_film_show', {'id': film.id}) }}">Détail</a>
+                    {% if is_admin %}
+                        <a href="{{ path('app_film_edit', {'id': film.id}) }}">Modifier</a>
+                    {% endif %}                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun film trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(films) }}
+    </div>
+
+    {% if is_admin %}
+        <a href="{{ path('app_film_new') }}">Créer un nouveau film</a>
+    {% endif %}
+{% endblock %}

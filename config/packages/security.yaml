@@ -38,6 +38,10 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/platforme/new, roles: ROLE_ADMIN }
+        - { path: ^/platforme/\d+$, roles: ROLE_ADMIN, methods: [POST, DELETE] } 
+        - { path: ^/film/new, roles: ROLE_ADMIN } 
+        - { path: ^/film/\d+$, roles: ROLE_ADMIN, methods: [POST, DELETE] }     
 
 when@test:
     security:

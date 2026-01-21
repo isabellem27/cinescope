@@ -1,0 +1,21 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+
+{% block content %}
+    <h1>Tableau de bord - administration</h1>
+
+    <p>
+        <a href="{{ ea_url()
+            .setController('App\\Controller\\Admin\\FilmCrudController')
+            .setAction('index')
+        }}">
+            ➜ Accéder à la liste des films
+        </a>
+        <a href="{{ ea_url()
+            .setController('App\\Controller\\Admin\\PlatformeCrudController')
+            .setAction('index')
+        }}">
+            ➜ Accéder à la liste des plateformes
+        </a>
+    </p>
+{% endblock %}

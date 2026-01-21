@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Platforme{% endblock %}
+
+{% block body %}
+    <h1>Create new Platforme</h1>
+
+    {{ include('platforme/_form.html.twig') }}
+
+    <a href="{{ path('app_platforme_index') }}">back to list</a>
+{% endblock %}
