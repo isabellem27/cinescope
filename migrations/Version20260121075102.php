@@ -28,7 +28,8 @@ final class Version20260121075102 extends AbstractMigration
         $this->addSql('ALTER TABLE film_platforme ADD CONSTRAINT FK_D7996D81567F5183 FOREIGN KEY (film_id) REFERENCES film (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE film_platforme ADD CONSTRAINT FK_D7996D814FF12FE6 FOREIGN KEY (platforme_id) REFERENCES platforme (id) ON DELETE CASCADE');
         $this->addSql("INSERT INTO utilisateur (email, roles, password) VALUES ('moi@cinescope.com', '[\"ROLE_ADMIN\"]','\$2y\$13\$ElTUj5OqmSnwrviwItmw0O/663Y6bEAyLPhCfZZKmUM1GgD3IFB52')");
-    }
+        $this->addSql("INSERT INTO utilisateur (email, roles, password) VALUES ('usr@mail.com', '[\"ROLE_USER\"]','\$2y\$13\$N4ZllxmHt1aFIegacE7Lg.Xq5eB8QJ.pp0wBJwCEbKtA3QicfS7v2')");
+        }
 
     public function down(Schema $schema): void
     {
