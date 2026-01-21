@@ -19,7 +19,7 @@ class PlatformeType extends AbstractType
             ->add('logo')
             ->add('films', EntityType::class, [
                 'class' => Film::class,
-                'choice_label' => 'id',
+                'choice_label' => 'title',
                 'multiple' => true,
             ])
         ;

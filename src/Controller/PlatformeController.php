@@ -18,12 +18,15 @@ final class PlatformeController extends AbstractController
     #[Route(name: 'app_platforme_index', methods: ['GET'])]
     public function index(PlatformeRepository $platformeRepository): Response
     {
+        $platformes = $platformeRepository->findAll();
+
         return $this->render('platforme/index.html.twig', [
-            'platformes' => $platformeRepository->findAll(),
+            'platformes' => $platformes,
         ]);
     }
 
     #[Route('/new', name: 'app_platforme_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $platforme = new Platforme();
@@ -52,6 +55,7 @@ final class PlatformeController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_platforme_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Platforme $platforme, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(PlatformeType::class, $platforme);

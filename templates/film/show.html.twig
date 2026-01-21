@@ -1,34 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Film{% endblock %}
+{% block title %}Détail du film{% endblock %}
 
 {% block body %}
-    <h1>Film</h1>
+    <h1>{{ film.title }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ film.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ film.title }}</td>
-            </tr>
-            <tr>
-                <th>Synopsis</th>
-                <td>{{ film.synopsis }}</td>
-            </tr>
-            <tr>
-                <th>ReleaseYear</th>
-                <td>{{ film.releaseYear }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <p><strong>Année de sortie :</strong> {{ film.releaseYear }}</p>
+    <p><strong>Synopsis :</strong> {{ film.synopsis }}</p>
 
-    <a href="{{ path('app_film_index') }}">back to list</a>
+    <p><strong>Plateformes :</strong>
+        {% if film.platform|length > 0 %}
+            {{ film.platform|map(p => p.name)|join(', ') }}
+        {% else %}
+            Aucune plateforme
+        {% endif %}
+    </p>
 
-    <a href="{{ path('app_film_edit', {'id': film.id}) }}">edit</a>
-
-    {{ include('film/_delete_form.html.twig') }}
+    <a href="{{ path('app_film_index') }}">← Retour à la liste des films</a>
 {% endblock %}

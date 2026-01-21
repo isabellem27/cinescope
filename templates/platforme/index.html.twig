@@ -1,39 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Platforme index{% endblock %}
+{% block title %}Liste des plateformes{% endblock %}
 
 {% block body %}
-    <h1>Platforme index</h1>
+    <h1>Liste des plateformes et leurs films disponibles</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Url</th>
-                <th>Logo</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for platforme in platformes %}
-            <tr>
-                <td>{{ platforme.id }}</td>
-                <td>{{ platforme.name }}</td>
-                <td>{{ platforme.url }}</td>
-                <td>{{ platforme.logo }}</td>
-                <td>
-                    <a href="{{ path('app_platforme_show', {'id': platforme.id}) }}">show</a>
-                    <a href="{{ path('app_platforme_edit', {'id': platforme.id}) }}">edit</a>
-                </td>
-            </tr>
+    <ul>
+        {% if platformes|length == 0 %}
+            <p>Aucune plateforme</p>
         {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            {% for platforme in platformes %}
+                <li>
+                    <strong>{{ platforme.name }}</strong> 
+                    {% if platforme.url %} - <a href="{{ platforme.url }}" target="_blank">Site</a>{% endif %}
+                    {% if platforme.logo %}<br><img src="{{ platforme.logo }}" alt="{{ platforme.name }}" width="100">{% endif %}
+                    
+                    {% if platforme.films|length > 0 %}
+                        <ul>
+                            {% for film in platforme.films %}
+                                <li>{{ film.title }} ({{ film.releaseYear }})</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>Aucun film disponible.</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul> 
 
-    <a href="{{ path('app_platforme_new') }}">Create new</a>
 {% endblock %}
